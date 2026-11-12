@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!-- LaundryBoard: 寒色系ストライプ (board.urdf と同形状) -->
+<robot name="board_laundry">
+  <material name="blue">
+    <color rgba="0.1 0.3 0.9 1.0"/>
+  </material>
+  <material name="cyan">
+    <color rgba="0.2 0.8 0.95 1.0"/>
+  </material>
+  <material name="white">
+    <color rgba="0.95 0.95 1.0 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <inertia ixx="2.17" ixy="0" ixz="0" iyy="0.083" iyz="0" izz="2.08"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0.833" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.8 0.333"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.8 0.334"/>
+      </geometry>
+      <material name="cyan"/>
+    </visual>
+
+    <visual>
+      <origin xyz="0 0 0.167" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.8 0.333"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.02 0.8 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

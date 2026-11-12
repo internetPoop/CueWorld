@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="hinged_box">
+  <material name="box_mat">
+    <color rgba="0.3 0.6 0.8 1.0"/>
+  </material>
+  <material name="lid_mat">
+    <color rgba="0.2 0.8 0.4 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <inertial>
+      <mass value="0.5"/>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.005"/>
+    </inertial>
+    
+    <!-- Bottom -->
+    <visual>
+      <origin xyz="0 0 0.005" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.2 0.01"/></geometry>
+      <material name="box_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.005" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.2 0.01"/></geometry>
+    </collision>
+
+    <!-- Front -->
+    <visual>
+      <origin xyz="0 0.095 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.01 0.2"/></geometry>
+      <material name="box_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.095 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.01 0.2"/></geometry>
+    </collision>
+
+    <!-- Back -->
+    <visual>
+      <origin xyz="0 -0.095 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.01 0.2"/></geometry>
+      <material name="box_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.095 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.01 0.2"/></geometry>
+    </collision>
+
+    <!-- Left -->
+    <visual>
+      <origin xyz="-0.095 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.01 0.18 0.2"/></geometry>
+      <material name="box_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.095 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.01 0.18 0.2"/></geometry>
+    </collision>
+
+    <!-- Right -->
+    <visual>
+      <origin xyz="0.095 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.01 0.18 0.2"/></geometry>
+      <material name="box_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="0.095 0 0.1" rpy="0 0 0"/>
+      <geometry><box size="0.01 0.18 0.2"/></geometry>
+    </collision>
+  </link>
+
+  <link name="lid_link">
+    <inertial>
+      <mass value="0.1"/>
+      <!-- Lid origin relative to joint -->
+      <origin xyz="0 0.1 0.005" rpy="0 0 0"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0.1 0.005" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.2 0.01"/></geometry>
+      <material name="lid_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.1 0.005" rpy="0 0 0"/>
+      <geometry><box size="0.2 0.2 0.01"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="lid_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="lid_link"/>
+    <!-- Joint positioned at the back-top edge -->
+    <origin xyz="0 -0.1 0.2" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="2.0" effort="10.0" velocity="1.0"/>
+    <dynamics damping="0.1" friction="0.1"/>
+  </joint>
+</robot>

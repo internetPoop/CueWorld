@@ -1,0 +1,8 @@
+# cueworld の実行とデモに必要なパッケージ。Python 3.10。
+numpy==1.26.0
+gymnasium==1.2.1
+pybullet==3.2.6
+pillow==12.0.0
+opencv-python-headless==4.13.0.92
+imageio==2.37.0
+imageio-ffmpeg==0.6.0

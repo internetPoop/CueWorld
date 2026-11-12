@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot name="refrigerator">
+  <material name="body_mat">
+    <color rgba="0.95 0.95 0.95 1.0"/>
+  </material>
+  <material name="door_mat">
+    <color rgba="0.9 0.9 0.9 1.0"/>
+  </material>
+  <material name="shelf_mat">
+    <color rgba="0.8 0.9 1.0 0.5"/>
+  </material>
+
+  <link name="base_link">
+    <inertial>
+      <mass value="50.0"/>
+      <origin xyz="0 0 0.9" rpy="0 0 0"/>
+      <inertia ixx="16.0" ixy="0" ixz="0" iyy="16.0" iyz="0" izz="5.3"/>
+    </inertial>
+    
+    <!-- Bottom -->
+    <visual><origin xyz="0 0 0.025" rpy="0 0 0"/><geometry><box size="0.8 0.8 0.05"/></geometry><material name="body_mat"/></visual>
+
+    <!-- Top -->
+    <visual><origin xyz="0 0 1.775" rpy="0 0 0"/><geometry><box size="0.8 0.8 0.05"/></geometry><material name="body_mat"/></visual>
+
+    <!-- Left -->
+    <visual><origin xyz="-0.375 0 0.9" rpy="0 0 0"/><geometry><box size="0.05 0.8 1.7"/></geometry><material name="body_mat"/></visual>
+
+    <!-- Right -->
+    <visual><origin xyz="0.375 0 0.9" rpy="0 0 0"/><geometry><box size="0.05 0.8 1.7"/></geometry><material name="body_mat"/></visual>
+
+    <!-- Back -->
+    <visual><origin xyz="0 -0.375 0.9" rpy="0 0 0"/><geometry><box size="0.7 0.05 1.7"/></geometry><material name="body_mat"/></visual>
+
+    <!-- Shelf 1 -->
+    <visual><origin xyz="0 -0.025 0.6" rpy="0 0 0"/><geometry><box size="0.7 0.65 0.02"/></geometry><material name="shelf_mat"/></visual>
+
+    <!-- Shelf 2 -->
+    <visual><origin xyz="0 -0.025 1.2" rpy="0 0 0"/><geometry><box size="0.7 0.65 0.02"/></geometry><material name="shelf_mat"/></visual>
+
+    <!-- Container Collision as a single bounding box -->
+    <collision>
+      <origin xyz="0 0 0.9" rpy="0 0 0"/>
+      <geometry><box size="0.8 0.8 1.8"/></geometry>
+    </collision>
+  </link>
+
+  <link name="door_link">
+    <inertial>
+      <mass value="5.0"/>
+      <origin xyz="0.35 0 0" rpy="0 0 0"/>
+      <inertia ixx="1.2" ixy="0" ixz="0" iyy="0.2" iyz="0" izz="1.2"/>
+    </inertial>
+    <visual>
+      <origin xyz="0.35 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.7 0.05 1.7"/></geometry>
+      <material name="door_mat"/>
+    </visual>
+    <collision>
+      <origin xyz="0.35 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.7 0.05 1.7"/></geometry>
+    </collision>
+  </link>
+
+  <joint name="door_joint" type="revolute">
+    <parent link="base_link"/>
+    <child link="door_link"/>
+    <!-- Left front edge -->
+    <origin xyz="-0.35 0.375 0.9" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="0" upper="2.0" effort="100.0" velocity="1.0"/>
+    <dynamics damping="1.0" friction="1.0"/>
+  </joint>
+</robot>

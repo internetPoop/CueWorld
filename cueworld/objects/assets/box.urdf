@@ -1,0 +1,89 @@
+<?xml version="1.0" ?>
+<robot name="box_container">
+  <!-- A single link for the container -->
+  <link name="base_link">
+    <!-- Inertial properties -->
+    <inertial>
+      <mass value="0.5"/>
+      <origin rpy="0 0 0" xyz="0 0 0.05"/>
+      <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+    </inertial>
+
+    <!-- Bottom plate -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.01"/>
+      <geometry>
+        <box size="0.2 0.2 0.02"/>
+      </geometry>
+      <material name="wood">
+        <color rgba="0.8 0.6 0.4 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.01"/>
+      <geometry>
+        <box size="0.2 0.2 0.02"/>
+      </geometry>
+    </collision>
+
+    <!-- Front wall (+X) -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0.09 0 0.06"/>
+      <geometry>
+        <box size="0.02 0.2 0.1"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.09 0 0.06"/>
+      <geometry>
+        <box size="0.02 0.2 0.1"/>
+      </geometry>
+    </collision>
+
+    <!-- Back wall (-X) -->
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.09 0 0.06"/>
+      <geometry>
+        <box size="0.02 0.2 0.1"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.09 0 0.06"/>
+      <geometry>
+        <box size="0.02 0.2 0.1"/>
+      </geometry>
+    </collision>
+
+    <!-- Left wall (+Y) -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0.09 0.06"/>
+      <geometry>
+        <box size="0.16 0.02 0.1"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.09 0.06"/>
+      <geometry>
+        <box size="0.16 0.02 0.1"/>
+      </geometry>
+    </collision>
+
+    <!-- Right wall (-Y) -->
+    <visual>
+      <origin rpy="0 0 0" xyz="0 -0.09 0.06"/>
+      <geometry>
+        <box size="0.16 0.02 0.1"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.09 0.06"/>
+      <geometry>
+        <box size="0.16 0.02 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>
