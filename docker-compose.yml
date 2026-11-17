@@ -1,0 +1,14 @@
+services:
+  cueworld:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # ホストのソースを、import できる位置にマウントする。
+      # cueworld と subtasks_for_cueworld は同じ PYTHONPATH の下に並ぶ。
+      - ./cueworld:/opt/src/cueworld
+      - ./subtasks_for_cueworld:/opt/src/subtasks_for_cueworld
+    environment:
+      PYTHONPATH: /opt/src
+    working_dir: /opt/src
+    command: ["sleep", "infinity"]

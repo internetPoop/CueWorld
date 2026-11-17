@@ -13,10 +13,11 @@ RUN apt-get update \
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
-# ビルドコンテキストは cueworld ディレクトリ。
-# import cueworld が通るよう、親ディレクトリの下にパッケージ名で置く。
+# ビルドコンテキストはリポジトリルート（cueworld パッケージの親）。
+# import cueworld が通るよう、パッケージ名のディレクトリに置く。
+# subtasks_for_cueworld は同じ /opt/src に compose がマウントする。
 WORKDIR /opt/src
-COPY . /opt/src/cueworld
+COPY cueworld /opt/src/cueworld
 ENV PYTHONPATH=/opt/src
 WORKDIR /opt/src
 

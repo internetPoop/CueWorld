@@ -1,0 +1,12 @@
+# Python 3.10+ 推奨
+# 仮想環境の作成例:
+#   python -m venv .venv
+#   source .venv/bin/activate
+#   pip install -r requirements.txt
+
+# ランタイム
+gymnasium==1.1.1
+numpy==1.26.4
+
+# テスト (python -m pytest tests/)
+pytest==8.3.4
